@@ -1,57 +1,22 @@
-> Node.js REST API Example with MongoDB, Mongoskin, Express 3 and 4
+### Building
 
-# Express.js 4.x
+> You'll need node and npm set up on your system (which is beyond the scope of this README), and gulp installed (`npm install -g gulp` if you don't already have it).
 
-`master` branch
+1. Clone this repo & move into the directory
 
-Full tutorial: <http://webapplog.com/express-js-4-node-js-and-mongodb-rest-api-tutorial/>
+2. Install the dependencies:
 
-Brief instructions:
+  `npm install`
 
-```
-$ git clone https://github.com/azat-co/rest-api-express.git
-$ cd rest-api-express
-$ npm install
-$ node express.js
-```
+3. Build and run:
 
-In a new terminal window:
-
-```
-$ mocha express.test.js
-```
-
-Or, if you don't have mocha installed globally:
-
-```
-$ ./node_modules/mocha/bin/mocha express.test.js
-```
+	`npm start`
 
 
-# Express.js 3.x
+### Gulp
 
-`express3` branch
-
-Full tutorial: <http://webapplog.com/tutorial-node-js-and-mongodb-json-rest-api-server-with-mongoskin-and-express-js/>
-
-Brief instructions:
-
-```
-$ git clone https://github.com/azat-co/rest-api-express.git
-$ cd rest-api-express
-$ git checkout express3
-$ npm install
-$ node express.js
-```
-
-in a new window
-
-```
-$ mocha express.test.js
-```
-
-or (if you don't have mocha installed globally):
-
-```
-$ ./node_modules/mocha/bin/mocha express.test.js
-```
+| `gulp` command  | result |
+| ------------- | ------------- |
+| `gulp`  | Lint the code and concatenate all files in the `src` directory into `index.js`.  |
+| `gulp watch`  | Concatenate all files in the `src` directory into `index.js` and rebuild on changes to `src`.  |
+| `gulp hint`  | Lint all code. Doesn't build anything.  |
