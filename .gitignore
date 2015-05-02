@@ -28,3 +28,6 @@ node_modules
 
 # SQLite DB
 seeti.db
+
+# Generated index fle
+index.js
