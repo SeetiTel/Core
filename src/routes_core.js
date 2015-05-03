@@ -22,6 +22,8 @@ router.post('/whistle/new/', function(req, res) {
       res.status(404).json({
         error: 'Voice whistles not supported with this method'
       });
+
+      console.log(chalk.red("Error! Tried to create new manual voice whistle (what?)"));
       return;
     case 2:
       //image
@@ -41,12 +43,14 @@ router.post('/whistle/new/', function(req, res) {
       res.status(404).json({
         error: 'Type ' + type + ' not found'
       });
+      console.log(chalk.red("Error! Invalid type of whistle to create."));
       return;
   }
 
   //run the query
   db.run(query, param, function(err) {
     if (err) {
+      console.log(chalk.red("Error! " + err));
       res.status(500).json({
         error: err
       });
@@ -108,6 +112,7 @@ router.get('/whistles/:offset?', function(req, res) {
           });
         }
       } else {
+        console.log(chalk.red("Error! " + err));
         res.status(500).json({
           error: err
         });
@@ -161,6 +166,8 @@ router.get('/whistles/search/:phrase', function(req, res) {
           });
         }
       } else {
+
+        console.log(chalk.red("Error! " + err));
         res.status(500).json({
           error: err
         });
@@ -195,8 +202,10 @@ router.get('/whistle/:id', function(req, res) {
           res.status(404).json({
             error: 'No such ID.'
           });
+          console.log(chalk.red("Error! No such whistle ID."));
         }
       } else {
+        console.log(chalk.red("Error! " + err));
         res.status(500).json({
           error: err
         });

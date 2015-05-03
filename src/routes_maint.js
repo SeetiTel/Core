@@ -44,6 +44,7 @@ router.delete('/whistles', auth, function(req, res) {
         res.status(500).json({
           error: err
         });
+        console.log(chalk.red("Error! " + err));
       } else {
         res.json({
           message: 'DB table truncated'
@@ -78,6 +79,8 @@ router.post('/whistle/demo/:type?', function(req, res) {
       res.status(500).json({
         error: 'No valid type found.'
       });
+
+      console.log(chalk.red("Error! No valid type found."));
       return;
   }
 
@@ -87,6 +90,7 @@ router.post('/whistle/demo/:type?', function(req, res) {
       res.status(500).json({
         error: err
       });
+      console.log(chalk.red("Error! " + err));
     } else {
       res.json({
         message: 'Demo entry added.'

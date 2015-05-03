@@ -14,9 +14,10 @@ router.get('/twilio/sms/', function(req, res) {
     //run the query
     db.run(query, param, function(err) {
       if (err) {
-        res.status(500).json({
-          error: err
-        });
+        //send back TWIML response
+        res.type('text/html'); // set content-type
+        res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Sms>Sorry, something went wrong. Please try again.</Sms></Response>');
+        console.log(chalk.red("Error! " + err));
       } else {
         //send back TWIML response
         res.type('text/html'); // set content-type

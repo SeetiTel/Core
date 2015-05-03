@@ -6,7 +6,9 @@ var logger = function(req, res, next) {
 };
 
 app.use(cors()); //handle CORS requests
-app.use(multer({ dest: './data/'})); //let us process POST data
+app.use(multer({
+  dest: './data/'
+})); //let us process POST data
 app.use(logger); //log all requests to console
 app.use('/api/v1/', router); //route our API endpoints
 app.use('/data', express.static('data')); //route our static resource directory
