@@ -48,7 +48,7 @@ app.use(logResponse); //log all responses to console
 app.use('/api/v1/', router); //route our API endpoints
 app.use('/data', express.static('data')); //route our static resource directory
 
-app.use(compress());  //gzip dat shizzle
+app.use(compression());  //gzip dat shizzle
 
 // TIMING
 // =============================================================================
