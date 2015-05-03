@@ -46,7 +46,7 @@ router.delete('/whistles', auth, function(req, res) {
         });
         console.log(chalk.red("Error! " + err));
       } else {
-        res.json({
+        res.status(204).json({
           message: 'DB table truncated'
         });
       }
@@ -58,7 +58,7 @@ router.delete('/whistles', auth, function(req, res) {
 router.delete('/whistle/:id?', auth, function(req, res) {
   var id = req.params.id ? [parseInt(req.params.id)] : [0],
   query = "DELETE from whistles WHERE rowid = ?";
-  
+
   db.run(query, id, function(err) {
     if (err) {
       res.status(500).json({
@@ -66,7 +66,7 @@ router.delete('/whistle/:id?', auth, function(req, res) {
       });
       console.log(chalk.red("Error! " + err));
     } else {
-      res.json({
+      res.status(204).json({
         message: 'Whistle deleted.'
       });
     }
