@@ -35,11 +35,16 @@ function logResponse(req, res, next) {
 
 
 app.use(cors()); //handle CORS requests
+
 app.use(multer({
   dest: './data/'
-})); //let us process POST data
+})); //for parsing multipart/form-data
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.use(logRequest); //log all requests to console
 app.use(logResponse); //log all responses to console
+
 app.use('/api/v1/', router); //route our API endpoints
 app.use('/data', express.static('data')); //route our static resource directory
 

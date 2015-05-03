@@ -52,9 +52,9 @@ router.get('/twilio/sms/', function(req, res) {
 router.get('/twilio/voice/', function(req, res) {
   res.type('text/html'); // set content-type
   res.send('<?xml version="1.0" encoding="UTF-8"?><Response>' +
-          '<Say>Welcome to SeeteeTel, a secure system for whistleblowers and leakers. At the tone, you will have 60 seconds to record. When you\'re finished, press star to complete the recording.</Say>' + 
-          '<Record action="http://drunkbroncos.com:8080/api/v1/twilio/recording" method="GET" maxLength="60" finishOnKey="*"/>' + 
-          '<Say>I did not receive a recording.</Say>' +           
+          '<Say>Welcome to SeeteeTel, a secure system for whistleblowers and leakers. At the tone, you will have 60 seconds to record. When you\'re finished, press star to complete the recording.</Say>' +
+          '<Record action="http://168.235.152.38.com:8080/api/v1/twilio/recording" method="GET" maxLength="60" finishOnKey="*"/>' + 
+          '<Say>I did not receive a recording.</Say>' +
           '</Response>');
 });
 
@@ -65,16 +65,16 @@ router.get('/twilio/recording/', function(req, res) {
 
   //download the recording
   request(req.query.RecordingUrl + ".mp3").pipe(fs.createWriteStream('data/' + filename));
-  
+
     //run the query
     db.run(query, param, function(err) {
       if (err) {
         console.log(chalk.red("Error! " + err));
       }
     });
-    
+
     res.type('text/html'); // set content-type
   res.send('<?xml version="1.0" encoding="UTF-8"?><Response>' +
-          '<Say>Thank you for your recording. You may now hang up.</Say>' +           
+          '<Say>Thank you for your recording. You may now hang up.</Say>' +
           '</Response>');
 });
