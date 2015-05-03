@@ -13,7 +13,7 @@ gulp.task('hint', function() {
 
 //minify and concat our js
 gulp.task('js', function() {
-  gulp.src(['./src/app.js', './src/routes_core.js', './src/routes_maint.js', './src/server_start.js'])
+  gulp.src(['./src/app.js', './src/routes_core.js', './src/routes_maint.js', './src/routes_twilio.js', './src/server_start.js'])
     .pipe(uglify())
     .pipe(concat('index.js'))
     .pipe(gulp.dest('.'));
