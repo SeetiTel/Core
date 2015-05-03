@@ -48,6 +48,8 @@ app.use(logResponse); //log all responses to console
 app.use('/api/v1/', router); //route our API endpoints
 app.use('/data', express.static('data')); //route our static resource directory
 
+app.use(express.compress());  //gzip dat shizzle
+
 // TIMING
 // =============================================================================
 var upTime = 0; // uptime in secondsa

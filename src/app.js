@@ -3,18 +3,20 @@
 // BASE SETUP
 // =============================================================================
 // call the packages we need
-var fs = require('fs'), //node's filesystem lib
-  express = require('express'), //main express
+var express = require('express'), //main express
   app = express(), //build the engine
   multer = require('multer'), //parse json post data for express
   bodyParser = require('body-parser'), //body parser for other types of POST data
   cors = require('cors'), //make us API friendly
-  sqlite3 = require('sqlite3').verbose(), //database
+  request = require('request'), //basic HTTPS lib
+  compression = require('compression'), //express compression
   basicAuth = require('basic-auth'), //lets us protect routes with HTTP Basic Auth
+
+  sqlite3 = require('sqlite3').verbose(), //database
   chalk = require('chalk'), //pretty colors
   uuid = require('node-uuid'), //uuid creation for image uploads
-  request = require('request'); //basic HTTPS lib
-
+  fs = require('fs'); //node's filesystem lib
+  
 var port = process.env.PORT || 8080, // set our port
   startTime = new Date(); // get our uptime
 
