@@ -16,7 +16,7 @@ var express = require('express'), //main express
   chalk = require('chalk'), //pretty colors
   uuid = require('node-uuid'), //uuid creation for image uploads
   fs = require('fs'); //node's filesystem lib
-  
+
 var port = process.env.PORT || 8080, // set our port
   startTime = new Date(); // get our uptime
 

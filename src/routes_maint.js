@@ -57,7 +57,7 @@ router.delete('/whistles', auth, function(req, res) {
 //DELETE /whistle/{id}	Flushes whistle with given ID
 router.delete('/whistle/:id?', auth, function(req, res) {
   var id = req.params.id ? [parseInt(req.params.id)] : [0],
-  query = "DELETE from whistles WHERE rowid = ?";
+    query = "DELETE from whistles WHERE rowid = ?";
 
   db.run(query, id, function(err) {
     if (err) {
