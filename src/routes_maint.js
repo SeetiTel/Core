@@ -54,6 +54,25 @@ router.delete('/whistles', auth, function(req, res) {
   });
 });
 
+//DELETE /whistle/{id}	Flushes whistle with given ID
+router.delete('/whistle/:id?', auth, function(req, res) {
+  var id = req.params.id ? [parseInt(req.params.id)] : [0],
+  query = "DELETE from whistles WHERE rowid = ?";
+  
+  db.run(query, id, function(err) {
+    if (err) {
+      res.status(500).json({
+        error: err
+      });
+      console.log(chalk.red("Error! " + err));
+    } else {
+      res.json({
+        message: 'Whistle deleted.'
+      });
+    }
+  });
+});
+
 //POST /whistle/demo/{type}	Creates a single test whistle with the given type
 router.post('/whistle/demo/:type?', function(req, res) {
   //set up a demo query with dummy values
