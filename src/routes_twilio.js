@@ -11,15 +11,7 @@ router.get('/twilio/sms/', function(req, res) {
 
     //create a stream to put the file in, request it, and store it.
     //the URL where it's kept is in req.query.MediaUrl0
-    var file = fs.createWriteStream("data/" + filename);
-    var request = https.get(req.query.MediaUrl0, function(response) {
-      //save the file
-      response.pipe(file);
-
-      //DEBUG
-      console.log(req.query.MediaUrl0);
-      console.log(req.query);
-
+    request(req.query.MediaUrl0).pipe(fs.createWriteStream('data/' + filename))
 
       //set up our query
       param = [Date.now(), 2, "data\\" + filename];
@@ -37,7 +29,6 @@ router.get('/twilio/sms/', function(req, res) {
           res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Sms>Thank you; your whistle has been recieved.</Sms></Response>');
         }
       });
-    });
   } else {
     //this query is just a text
     param = [Date.now(), 0, req.query.Body];
