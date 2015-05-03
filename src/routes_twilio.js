@@ -7,6 +7,7 @@ router.get('/twilio/sms/', function(req, res) {
 
   if (req.query.NumMedia > 0) {
     //this message has media; disregard the text
+    console.log(req.query);
   } else {
     //this query is just a text
     param = [Date.now(), 0, req.query.Body];
