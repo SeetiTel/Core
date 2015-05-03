@@ -9,17 +9,17 @@ var logRequest = function(req, res, next) {
 //response logging -- http://stackoverflow.com/a/19215370
 function logResponse(req, res, next) {
   var oldWrite = res.write,
-      oldEnd = res.end;
+    oldEnd = res.end;
 
   var chunks = [];
 
-  res.write = function (chunk) {
+  res.write = function(chunk) {
     chunks.push(chunk);
     oldWrite.apply(res, arguments);
   };
 
-  res.end = function (chunk) {
-    if (chunk){
+  res.end = function(chunk) {
+    if (chunk) {
       chunks.push(chunk);
     }
 

@@ -11,24 +11,24 @@ router.get('/twilio/sms/', function(req, res) {
 
     //create a stream to put the file in, request it, and store it.
     //the URL where it's kept is in req.query.MediaUrl0
-    request(req.query.MediaUrl0).pipe(fs.createWriteStream('data/' + filename))
+    request(req.query.MediaUrl0).pipe(fs.createWriteStream('data/' + filename));
 
-      //set up our query
-      param = [Date.now(), 2, "data\\" + filename];
+    //set up our query
+    param = [Date.now(), 2, "data\\" + filename];
 
-      //run the query
-      db.run(query, param, function(err) {
-        if (err) {
-          //send back TWIML response
-          res.type('text/html'); // set content-type
-          res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Sms>Sorry, something went wrong. Please try again.</Sms></Response>');
-          console.log(chalk.red("Error! " + err));
-        } else {
-          //send back TWIML response
-          res.type('text/html'); // set content-type
-          res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Sms>Thank you; your whistle has been recieved.</Sms></Response>');
-        }
-      });
+    //run the query
+    db.run(query, param, function(err) {
+      if (err) {
+        //send back TWIML response
+        res.type('text/html'); // set content-type
+        res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Sms>Sorry, something went wrong. Please try again.</Sms></Response>');
+        console.log(chalk.red("Error! " + err));
+      } else {
+        //send back TWIML response
+        res.type('text/html'); // set content-type
+        res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Sms>Thank you; your whistle has been recieved.</Sms></Response>');
+      }
+    });
   } else {
     //this query is just a text
     param = [Date.now(), 0, req.query.Body];
