@@ -1,15 +1,43 @@
 // SET UP LOGGING
 // =============================================================================
-var logger = function(req, res, next) {
+var logRequest = function(req, res, next) {
   console.log(chalk.blue(upTime + "; " + req.headers['user-agent']) + " " + chalk.green(req.method + " " + req.originalUrl));
   next(); // Passing the request to the next handler in the stack.
 };
+
+function logResponse(req, res, next) {
+  var oldWrite = res.write,
+      oldEnd = res.end;
+
+  var chunks = [];
+
+  res.write = function (chunk) {
+    chunks.push(chunk);
+
+    oldWrite.apply(res, arguments);
+  };
+
+  res.end = function (chunk) {
+    if (chunk)
+      chunks.push(chunk);
+
+    var body = Buffer.concat(chunks).toString('utf8');
+    console.log(req.path, body);
+
+    oldEnd.apply(res, arguments);
+  };
+
+  next();
+}
+
+
 
 app.use(cors()); //handle CORS requests
 app.use(multer({
   dest: './data/'
 })); //let us process POST data
-app.use(logger); //log all requests to console
+app.use(logRequest); //log all requests to console
+app.use(logResponse); //log all responses to console
 app.use('/api/v1/', router); //route our API endpoints
 app.use('/data', express.static('data')); //route our static resource directory
 
