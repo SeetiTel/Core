@@ -1,7 +1,7 @@
 // SET UP LOGGING
 // =============================================================================
 var logger = function(req, res, next) {
-  console.log(chalk.green(upTime + "; " + req.headers['user-agent']) + " " + chalk.blue(req.method + " " + req.originalUrl));
+  console.log(chalk.blue(upTime + "; " + req.headers['user-agent']) + " " + chalk.green(req.method + " " + req.originalUrl));
   next(); // Passing the request to the next handler in the stack.
 };
 

@@ -7,6 +7,7 @@ router.post('/whistle/new/', function(req, res) {
   var type = parseInt(req.body.type),
     data = req.body.data,
     query = "INSERT INTO whistles VALUES(?, ?, ?)",
+    currDate = Date.now(),
     param,
     uploadFilename,
     newFilename;
@@ -14,7 +15,7 @@ router.post('/whistle/new/', function(req, res) {
   switch (type) {
     case 0:
       // text
-      param = [Date.now(), 0, data];
+      param = [currDate, 0, data];
       break;
     case 1:
       //voice; not supported
@@ -50,8 +51,11 @@ router.post('/whistle/new/', function(req, res) {
         error: err
       });
     } else {
-      res.json({
-        message: 'New whistle added.'
+      //ghetto way to get the last whistle and return its id
+      db.each('SELECT ROWID as id, * FROM whistles WHERE created = ' + currDate + ' LIMIT 1', function(err, row) {
+        res.json({
+          id: row.id
+        });
       });
     }
   });
