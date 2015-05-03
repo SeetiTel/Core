@@ -53,7 +53,7 @@ router.post('/whistle/new/', function(req, res) {
     } else {
       //ghetto way to get the last whistle and return its id
       db.each('SELECT ROWID as id, * FROM whistles WHERE created = ' + currDate + ' LIMIT 1', function(err, row) {
-        res.json({
+        res.status(201).json({
           id: row.id
         });
       });
