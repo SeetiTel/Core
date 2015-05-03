@@ -1,10 +1,12 @@
 // SET UP LOGGING
 // =============================================================================
+//request logging
 var logRequest = function(req, res, next) {
   console.log(chalk.blue(upTime + "; " + req.headers['user-agent']) + " " + chalk.green(req.method + " " + req.originalUrl));
   next(); // Passing the request to the next handler in the stack.
 };
 
+//response logging -- http://stackoverflow.com/a/19215370
 function logResponse(req, res, next) {
   var oldWrite = res.write,
       oldEnd = res.end;
