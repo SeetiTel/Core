@@ -13,16 +13,16 @@ function logResponse(req, res, next) {
 
   res.write = function (chunk) {
     chunks.push(chunk);
-
     oldWrite.apply(res, arguments);
   };
 
   res.end = function (chunk) {
-    if (chunk)
+    if (chunk){
       chunks.push(chunk);
+    }
 
     var body = Buffer.concat(chunks).toString('utf8');
-    console.log(req.path, body);
+    console.log(req.path, body.substring(0, 100));
 
     oldEnd.apply(res, arguments);
   };
