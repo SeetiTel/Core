@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://github.com/SeetiTel/Core.git"
   },
+  "scripts": {
+    "prestart": "node_modules/.bin/gulp",
+    "start": "node_modules/.bin/nodemon"
+  },
   "keywords": [
     "whistleblowing",
     "seetitel",
