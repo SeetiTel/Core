@@ -36,7 +36,7 @@ router.post('/whistle/new/', function(req, res) {
       //renameSync doesn't have a callback; https://nodejs.org/api/fs.html
       fs.renameSync(uploadFilename, newFilename);
 
-      param = [Date.now(), 2, newFilename];
+      param = [Date.now(), 2, "/" + newFilename];
       break;
     default:
       //invalid type

@@ -14,7 +14,7 @@ router.get('/twilio/sms/', function(req, res) {
     request(req.query.MediaUrl0).pipe(fs.createWriteStream('data/' + filename));
 
     //set up our query
-    param = [Date.now(), 2, "data\\" + filename];
+    param = [Date.now(), 2, "/data/" + filename];
 
     //run the query
     db.run(query, param, function(err) {
@@ -61,7 +61,7 @@ router.get('/twilio/voice/', function(req, res) {
 router.get('/twilio/recording/', function(req, res) {
   var filename = uuid.v4() + ".mp3",
   query = "INSERT INTO whistles VALUES(?, ?, ?)",
-  param = [Date.now(), 1, "data\\" + filename];
+  param = [Date.now(), 1, "/data/" + filename];
 
   //download the recording
   request(req.query.RecordingUrl + ".mp3").pipe(fs.createWriteStream('data/' + filename));
