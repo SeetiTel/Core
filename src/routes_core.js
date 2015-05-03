@@ -30,8 +30,8 @@ router.post('/whistle/new/', function(req, res) {
 
       //the upload logic is all handled directly by multer; all we do is get the filename. Horrid security, I know.
       //here, we'll get the filenames, both uploaded and future
-      uploadFilename = "data\\" + req.files.data.name;
-      newFilename = "data\\" + uuid.v4() + ".jpg";
+      uploadFilename = "data/" + req.files.data.name;
+      newFilename = "data/" + uuid.v4() + ".jpg";
 
       //renameSync doesn't have a callback; https://nodejs.org/api/fs.html
       fs.renameSync(uploadFilename, newFilename);
