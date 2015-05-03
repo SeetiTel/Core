@@ -12,7 +12,7 @@ var fs = require('fs'), //node's filesystem lib
   basicAuth = require('basic-auth'), //lets us protect routes with HTTP Basic Auth
   chalk = require('chalk'), //pretty colors
   uuid = require('node-uuid'), //uuid creation for image uploads
-  https = require('https'); //basic HTTPS lib
+  request = require('request'); //basic HTTPS lib
 
 var port = process.env.PORT || 8080, // set our port
   startTime = new Date(); // get our uptime
