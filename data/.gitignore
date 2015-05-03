@@ -1,0 +1,6 @@
+# Ignore everything in this directory
+*
+# Except this file and the demo files
+!.gitignore
+!61ababf6-ebc9-49fa-b75d-2c226ef8d56e.mp3
+!91eada55-fdd1-455c-a927-3cc7ab918b17.jpg
